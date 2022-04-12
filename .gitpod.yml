@@ -7,7 +7,6 @@ tasks:
     init: |
       sudo apt update && sudo apt upgrade -y
       gp sync-done system-update
-      exit
 
   - name: Upgrade Pip
     init: |
