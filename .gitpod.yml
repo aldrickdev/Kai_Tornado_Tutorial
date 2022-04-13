@@ -15,6 +15,9 @@ tasks:
       gp sync-await upgrade-pip
       pip install -r requirements.txt
 
+  - name: Run Tornado Server
+    command: python new_server.py
+
 ports:
   - port: 8888
     onOpen: open-browser
