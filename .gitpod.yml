@@ -1,0 +1,23 @@
+tasks:
+  - name: Update System Packages
+    init: |
+      sudo apt update && sudo apt upgrade -y
+      gp sync-done system-update
+
+  - name: Upgrade Pip
+    init: |
+      gp sync-await system-update
+      pip install --upgrade pip
+      gp sync-done upgrade-pip
+
+  - name: Installing Requirements
+    init: |
+      gp sync-await upgrade-pip
+      pip install -r requirements.txt
+
+  - name: Run Tornado Server
+    command: python new_server.py
+
+ports:
+  - port: 8888
+    onOpen: open-preview
