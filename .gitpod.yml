@@ -20,4 +20,4 @@ tasks:
 
 ports:
   - port: 8888
-    onOpen: open-browser
+    onOpen: open-preview
