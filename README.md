@@ -419,4 +419,9 @@ Now when you start the server again, you will now see this:
 
 ![full_html_page](docs/images/full_html.png)  
 
-Now yes it does look ugly but thats because it's just HTML we will add the CSS shortly.
+Now yes it does look ugly but thats because it's just HTML we will add the CSS shortly.  
+
+#### Explaining the HTML  
+
+So that is a lot of HTML but I will attempt to go over all of the components and explain that they are for.  
+
