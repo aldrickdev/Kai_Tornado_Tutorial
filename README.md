@@ -413,4 +413,10 @@ Now that we have made sure that we can render HTML and can link our CSS to it, l
     </div>
   </body>
 </html>
-```
+```  
+
+Now when you start the server again, you will now see this:  
+
+![full_html_page](docs/images/full_html.png)  
+
+Now yes it does look ugly but thats because it's just HTML we will add the CSS shortly.
