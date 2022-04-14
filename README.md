@@ -254,3 +254,163 @@ The server should run and at `localhost:8888` you should see:
 ![tornado_hello_world_css](https://user-images.githubusercontent.com/75044812/161887912-a19657dd-989b-4916-b688-fd643ccd5a24.png)
 
 If you are seeing that the text is now red, then you have properly linked the css file.  
+
+### Full HTML
+
+Now that we have made sure that we can render HTML and can link our CSS to it, lets add in the rest of the HTML for this project and see how that looks. Your `index.html` should now look like this:  
+
+``` html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Sensor Data</title>
+  </head>
+  <body>
+    <div class="App">
+      <div id="latest-values_container">
+        <p class="panel-title">Last 10 values</p>
+        <section class="content-panel debug">
+          <table>
+            <thead>
+              <tr>
+                <th>Humidity (%)</th>
+                <th>Temperature (F)</th>
+              </tr>
+            </thead>
+            <tbody class="latest-values-table">
+              <tr>
+                <td id="hd1">50</td>
+                <td id="td1">100</td>
+              </tr>
+              <tr>
+                <td id="hd2">50</td>
+                <td id="td2">100</td>
+              </tr>
+              <tr>
+                <td id="hd3">50</td>
+                <td id="td3">100</td>
+              </tr>
+              <tr>
+                <td id="hd4">50</td>
+                <td id="td4">100</td>
+              </tr>
+              <tr>
+                <td id="hd5">50</td>
+                <td id="td5">100</td>
+              </tr>
+              <tr>
+                <td id="hd6">50</td>
+                <td id="td6">100</td>
+              </tr>
+              <tr>
+                <td id="hd7">50</td>
+                <td id="td7">100</td>
+              </tr>
+              <tr>
+                <td id="hd8">50</td>
+                <td id="td8">100</td>
+              </tr>
+              <tr>
+                <td id="hd9">50</td>
+                <td id="td9">100</td>
+              </tr>
+              <tr>
+                <td id="hd10">50</td>
+                <td id="td10">100</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
+      <div id="statistics_container">
+        <div class="vertical-center">
+          <p class="panel-title">Stats on the last 10 values</p>
+          <section class="content-panel debug">
+            <section id="statistic-table-title" class="margin-top">
+              <div>Avg</div>
+              <div>Max</div>
+              <div>Min</div>
+            </section>
+            <section id="statistic-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Humidity (%)</th>
+                    <th>Temperature (F)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td id="avg-hd">50</td>
+                    <td id="avg-td">100</td>
+                  </tr>
+                  <tr>
+                    <td id="max-hd">50</td>
+                    <td id="max-td">100</td>
+                  </tr>
+                  <tr>
+                    <td id="min-hd">50</td>
+                    <td id="min-td">100</td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+          </section>
+        </div>
+      </div>
+      <div id="status_container">
+        <div>
+          <p class="panel-title">Status</p>
+          <p id="status-message" class="debug">Placeholder</p>
+        </div>
+      </div>
+      <div id="alarm_container" class="debug">
+        <div id="current-alarm_container">
+          <p>Current Alarm Values</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Humidity (%)</th>
+                <th>Temperature (F)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td id="current-alarm-h">50</td>
+                <td id="current-alarm-t">100</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="set-alarm_container">
+          <div id="humidity-alarm-input">
+            <p>Humidity <input id="input-h" type="text" />%</p>
+          </div>
+          <div id="temperature-alarm-input">
+            <p>Temperature <input id="input-t" type="text" />F</p>
+          </div>
+          <button id="set-alarm-button" onclick="SetAlarm()">Set Alarm</button>
+        </div>
+      </div>
+      <div id="input_container" class="debug">
+        <div id="current-input-value_container">
+          <p id="current-sensor-title">Current Sensor Values</p>
+          <p id="sensor-title-h">
+            Humidity <span id="current-sensor-h">Null</span>%
+          </p>
+          <p id="sensor-title-t">
+            Temperature <span id="current-sensor-t"></span>F
+          </p>
+        </div>
+        <div id="input-button_container">
+          <button id="random1" onclick="Random1()">1 Random Value</button>
+          <button id="random10" onclick="Random10()">10 Random Values</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+```
