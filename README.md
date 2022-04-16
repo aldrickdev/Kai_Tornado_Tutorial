@@ -548,4 +548,47 @@ Inside the `tbody` you will see ten rows (`tr` elements) each with two `td` elem
 
 Above I've only shown 3 rows but in the full HTML, you can see that there are ten of them. You can see that I've added dummy data to start.  
 
+<hr>
+
+Next you will see that we have another `div` that similar as it ultimately contains a `table` with a title and some rows. However, there are some differences.  
+
+``` html
+<div id="statistics_container">
+  <div class="vertical-center">
+    <p class="panel-title">Stats on the last 10 values</p>
+    <section class="content-panel border">
+      <section id="statistic-table-title" class="margin-top">
+        <div>Avg</div>
+        <div>Max</div>
+        <div>Min</div>
+      </section>
+      <section id="statistic-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Humidity (%)</th>
+              <th>Temperature (F)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="avg-hd">50</td>
+              <td id="avg-td">100</td>
+            </tr>
+            <tr>
+              <td id="max-hd">50</td>
+              <td id="max-td">100</td>
+            </tr>
+            <tr>
+              <td id="min-hd">50</td>
+              <td id="min-td">100</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+  </div>
+</div>
+```
+
 
