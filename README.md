@@ -509,4 +509,43 @@ Here you can see that we have a `p` element, this will just give us a small titl
 
 Below that, we have an element called `section` with multiple classes, `"content-panel"` and `"border"`. Again these are classes that I will use for styling. A `section` element is pretty much the same thing as the `div` tag.  
 
-Inside the `section` we have a `table` element, this will allow us to create a table. In a table, you have a `thead` which would have the titles for each column and below that, you will have the `tbody` element which will hold the all of the rows for the table. I gave it the class `"latest-values-table"`.  
+inside the `section` we have a `table` element, this will allow us to create a table. In a table, you have a `thead` which would have the titles for each column and below that, you will have the `tbody` element which will hold the all of the rows for the table. I gave it the class `"latest-values-table"`.  
+
+<hr>
+
+In the `thead` element we are going to add our headings, in this case we will have `Humidity (%)` and `Temperature (F)`. 
+
+``` html
+<thead>
+  <tr>
+    <th>Humidity (%)</th>
+    <th>Temperature (F)</th>
+  </tr>
+</thead>
+```  
+
+Notice how inside of head we have a `tr` element, this represents a row. Then inside the row we have two `th` elements which each hold a heading.  
+
+<hr>
+
+Inside the `tbody` you will see ten rows (`tr` elements) each with two `td` elements. These are similar to `th` except they are meant to hold "table data".  
+
+``` html
+<tr>
+  <td id="hd1">50</td>
+  <td id="td1">100</td>
+</tr>
+<tr>
+  <td id="hd2">50</td>
+  <td id="td2">100</td>
+</tr>
+<tr>
+  <td id="hd3">50</td>
+  <td id="td3">100</td>
+</tr>
+...
+```  
+
+Above I've only shown 3 rows but in the full HTML, you can see that there are ten of them. You can see that I've added dummy data to start.  
+
+
