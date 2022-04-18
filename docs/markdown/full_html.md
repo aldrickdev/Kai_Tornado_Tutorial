@@ -164,7 +164,7 @@ Now when you start the server again, you will now see this:
 
 Now yes it does look ugly but thats because it's just HTML we will add the CSS shortly.  
 
-#### Explaining the HTML  
+## Explaining the HTML  
 
 So that is a lot of HTML but I will attempt to go over all of the components and explain that they are for.  
 
@@ -333,5 +333,97 @@ Next you will see that we have another `div` that similar as it ultimately conta
   </div>
 </div>
 ```
+
+First we can see that inside of the `div` with id of `statistics_container` we have another `div` with the class of `vertical-center`. Inside that we have a `p` element representing a small title. Under that we have a `section` with the class `content-panel border` which will hold the two other sections.  
+
+In the `section` with the id `statistic-table-title` and class `margin-top`, we have three `div`'s that just have titles for the data.  
+
+In the `section` with the id `statistic-table` will hold the table displaying the data.  
+
+<hr>
+
+In this section we have a `div` with the id `status_container` that will be used to show us the status.  
+
+``` html
+<div id="status_container">
+  <div>
+    <p class="panel-title">Status</p>
+    <p id="status-message" class="border">Placeholder</p>
+  </div>
+</div>
+```
+
+Inside we see can see we just have two `p` elements with some text.  
+
+<hr>
+
+In this section we create the `div` which holds the alarm part of the UI.  
+
+``` html
+<div id="alarm_container" class="border">
+  <div id="current-alarm_container">
+    <p>Current Alarm Values</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Humidity (%)</th>
+          <th>Temperature (F)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td id="current-alarm-h">50</td>
+          <td id="current-alarm-t">100</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="set-alarm_container">
+    <div id="humidity-alarm-input">
+      <p>Humidity <input id="input-h" type="text" />%</p>
+    </div>
+    <div id="temperature-alarm-input">
+      <p>Temperature <input id="input-t" type="text" />F</p>
+    </div>
+    <button id="set-alarm-button">Set Alarm</button>
+  </div>
+</div>
+```  
+
+Inside the first `div` we have two others, one with the id of `current-alarm_container` and the other `set-alarm_container`.  
+
+The `div` with the id `current-alarm_container` will have another table where you will be able to see the current threshold values for the alarms.  
+
+The `div` with the id `set-alarm_container` will contain the `input` elements where we will set the alarm values.  
+
+<hr>
+
+This final `div` has an id of `input_container` with a class of `border`.   
+
+``` html
+<div id="input_container" class="border">
+  <div id="current-input-value_container">
+    <p id="current-sensor-title">Current Sensor Values</p>
+    <p id="sensor-title-h">
+      Humidity <span id="current-sensor-h">Null</span>%
+    </p>
+    <p id="sensor-title-t">
+      Temperature <span id="current-sensor-t"></span>F
+    </p>
+  </div>
+  <div id="input-button_container">
+    <button id="random1">1 Random Value</button>
+    <button id="random10">10 Random Values</button>
+  </div>
+</div>
+```
+
+The first `div`, the one with the id of `current-input-value_container` contains a couple of `p` elements that will be used for small titles and to display the currently generated values.  
+
+The `div` with the id of `input-button_container` will contain the buttons that will be used to generate the humidity and temperature values.  
+
+<hr>
+
+Next we will speak briefly about completing the styling.  
 
 [Back to Beginning](/README.md) | [Prev: *Styling*](/docs/markdown/styling.md) | [Next: *Comming Soon*]()
