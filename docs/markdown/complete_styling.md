@@ -1,3 +1,9 @@
+# Complete Styling
+
+In this section we are going to add the rest of the styling to the HTML. Below is the CSS, you can copy and paste it into the `index.css` file.  
+
+## Full CSS file
+``` css
 * {
   margin: 0px;
   padding: 0px;
@@ -182,4 +188,50 @@ input {
 #current-sensor-title {
   margin-bottom: 1em;
 }
+```
 
+<hr>
+
+First you see `*` as the selector.  
+
+``` css
+* {
+  margin: 0px;
+  padding: 0px;
+}
+```
+
+This will just set the `margin` and the `padding` to `0px` that way we can start without any defaults.  
+
+<hr>
+
+For the `body` selector we first pick the `font-family` that we want the text to be. I set `height` to `100vh` which makes it so that the height is the size of the browser window. `display` is set to `flex` so that I can put things inside of the `body` element side by side later on. Lastly, `justify-content` and `align-items` are both set to `center` so that the things inside `body` can be centered horizontally and vertically.  
+
+``` css
+body {
+  font-family: system-ui;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+```
+
+<hr>
+
+Here we add some styles to an element with the class `App`. Here we set the `background` color, then set a `border`, which would be a solid black line that is `2px` wide. We also add a radisu to the border with `border-radius`. We set the `width` to the width of 35 characters. We then set the `display` mode to `grid` which allows me to create columns and rows for the elements inside `.App`. With `grid-template-columns` we set 2 equally sized columns.
+
+``` css
+.App {
+  background: rgb(178, 190, 181);
+  border: solid black 2px;
+  border-radius: 5px;
+  width: 35em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+```
+
+<hr>
+
+[Back to Beginning](/README.md) | [Prev: *Full HTML*](/docs/markdown/full_html.md) | [Prev: **]()

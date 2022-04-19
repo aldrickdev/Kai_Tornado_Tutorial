@@ -16,3 +16,4 @@ Table of Content
 - [Rendering HTML](/docs/markdown/rendering_html.md)
 - [Styling](/docs/markdown/styling.md)
 - [Full HTML](/docs/markdown/full_html.md)
+- [Complete Styling](/docs/markdown/complete_styling.md)
