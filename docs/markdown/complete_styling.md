@@ -4,57 +4,103 @@ In this section we are going to add the rest of the styling to the HTML. Below i
 
 ## Full CSS file
 ``` css
+/* Zero out the margins and padding so that we can start from a clean slate. */
 * {
   margin: 0px;
   padding: 0px;
 }
 
+/* This will target the body element */
 body {
+  /* Sets the documents font to system_ui */
   font-family: system-ui;
+
+  /* Sets the height to 100% of the height of the browser */
   height: 100vh;
+
+  /* Sets the display mode to flex, allowing you to put components side by side */
   display: flex;
+
+  /* Aligns the elements inside of the body in the center of the browser */
   justify-content: center;
   align-items: center;
 }
 
+/* This will target elements with the class of App */
 .App {
+  /* This will set the background color */
   background: rgb(178, 190, 181);
+
+  /* Creates a border of a solid black line with a width of 2px, then gives corners
+  a radius of 5px */
   border: solid black 2px;
   border-radius: 5px;
+
+  /* Sets the width to 35 character widths */
   width: 35em;
+
+  /* Sets the display mode to grid, then creates 2 columns with equal widths */
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
+/* Selects any element with the class border */
 .border {
+  /* Creates a border of a solid black line with a width of 2px, then gives corners
+  a radius of 5px */
   border: solid black 2px;
   border-radius: 5px;
 }
 
+/* Selects all button elements */
 button {
+  /* Adds the top and bottom padding to 0.5 the width of a character and the 
+  left and right to 3 times the width of a character */
   padding: 0.5em 3em;
+
+  /* Sets the font size to 16px */
   font-size: 16px;
+
+  /* Sets the radius of the button to 5px */
   border-radius: 5px;
 }
 
+/* Selects all input elements */
 input {
+  /* Sets the width to 50px */
   width: 50px;
+
+  /* Sets the margin of the right to the size of 1 character width */
   margin-right: 1em;
+
+  /* Sets the radius of the input to 5px */
   border-radius: 5px;
 }
 
+/* Selects all elements with the class panel-title */
 .panel-title {
+  /* Sets the font size to small */
   font-size: small;
 }
 
+/* Selects all elements with the id of latest-values_container */
 #latest-values_container {
+  /* Sets the width and height to 15 character widths */
   width: 15em;
   height: 15em;
+
+  /* Sets the margin to auto allowing the browser to set the left and right 
+  margins to equal values */
   margin: auto;
 }
 
+/* Selects all the section elements that are inside of an element with the id
+of latest-values_container */
 #latest-values_container > section {
+  /* Sets the height to 13.75 of a character width */
   height: 13.75em;
+
+  /* Centers the text */
   text-align: center;
 }
 
@@ -187,48 +233,6 @@ input {
 
 #current-sensor-title {
   margin-bottom: 1em;
-}
-```
-
-<hr>
-
-First you see `*` as the selector.  
-
-``` css
-* {
-  margin: 0px;
-  padding: 0px;
-}
-```
-
-This will just set the `margin` and the `padding` to `0px` that way we can start without any defaults.  
-
-<hr>
-
-For the `body` selector we first pick the `font-family` that we want the text to be. I set `height` to `100vh` which makes it so that the height is the size of the browser window. `display` is set to `flex` so that I can put things inside of the `body` element side by side later on. Lastly, `justify-content` and `align-items` are both set to `center` so that the things inside `body` can be centered horizontally and vertically.  
-
-``` css
-body {
-  font-family: system-ui;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-```
-
-<hr>
-
-Here we add some styles to an element with the class `App`. Here we set the `background` color, then set a `border`, which would be a solid black line that is `2px` wide. We also add a radisu to the border with `border-radius`. We set the `width` to the width of 35 characters. We then set the `display` mode to `grid` which allows me to create columns and rows for the elements inside `.App`. With `grid-template-columns` we set 2 equally sized columns.
-
-``` css
-.App {
-  background: rgb(178, 190, 181);
-  border: solid black 2px;
-  border-radius: 5px;
-  width: 35em;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
 }
 ```
 
