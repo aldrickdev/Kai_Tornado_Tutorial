@@ -104,6 +104,7 @@ of latest-values_container */
   text-align: center;
 }
 
+/* Selects element with class latest-values-table */
 .latest-values-table {
   font-size: 15px;
 }
@@ -166,26 +167,38 @@ id of statistics_container */
   font-size: small;
 }
 
+/* Selects element with class vertical-center */
 .vertical-center {
+  /* Sets all margins around this element to 0 */
   margin: 0;
+
+  /* Vertically centers the element */
   position: absolute;
   top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
 
+/* Selects element with the class content-panel that has a child with the class
+vertical-center  */
 .vertical-center > .content-panel {
   display: grid;
   grid-template-columns: 1fr 4fr;
   width: 21em;
 }
 
+/* Selects elements with class margin-top */
 .margin-top {
+  /* Sets the margin-top to 18px */
   margin-top: 18px;
 }
 
+/* Selects elements with the is of status_container  */
 #status_container {
+  /* Sets the size of the element to span over 2 columns */
   grid-column: 1/3;
+
+  /* Sets the left and right margins to 1 character width */
   margin-left: 1em;
   margin-right: 1em;
 }
