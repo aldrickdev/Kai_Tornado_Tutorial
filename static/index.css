@@ -52,6 +52,11 @@ input {
   text-align: center;
 }
 
+.latest-values-table {
+  font-size: 10px;
+  color: red;
+}
+
 #statistics_container {
   width: 17.25em;
   height: 12.75em;

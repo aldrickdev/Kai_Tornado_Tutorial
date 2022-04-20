@@ -104,33 +104,65 @@ of latest-values_container */
   text-align: center;
 }
 
+.latest-values-table {
+  font-size: 15px;
+}
+
+/* Selects all elements with the id of statistics_container */
 #statistics_container {
+  /* Sets the width to 17.25 character widths and the height to 12.75 character
+   widths */
   width: 17.25em;
   height: 12.75em;
+
+  /* Sets the margin to auto allowing the browser to set the left and right 
+  margins to equal values */
   margin: auto;
+
+  /* Sets the margin to a character width */
   margin-right: 1em;
+
+  /* Sets the position to relative so that you can position it relative to its 
+  normal position */
   position: relative;
 }
 
+/* Selects all sections the are inside of elements with a class 
+vertical-center inside elements with the id of statistics_container */
 #statistics_container > .vertical-center > section {
+  /* Centers the text */
   text-align: center;
 }
 
+/* Selects all sections that are inside a div, inside an element with the id
+of statistics_container */
 #statistics_container > div > section {
+  /* Sets the height to 16.75 of a characters width */
   height: 16.75em;
 }
 
+/* Selects elements with the id of statistic-table-title */
 #statistic-table-title {
+  /* Sets the display mode to flex, allowing you to put components side by side */
   display: flex;
+
+  /* Sets the direction of the content to be vertical */
   flex-direction: column;
+
+  /* Sets the margins around the children to be equal */
   justify-content: space-around;
 }
 
 #statistic-table {
+  /* Sets the display mode to flex, allowing you to put components side by side */
   display: flex;
 }
 
+/* Selects the elements with the class content-panel that is a child of elements
+with the class name vertical-center that is a child of an element with the 
+id of statistics_container */
 #statistics_container > .vertical-center > .content-panel {
+  /* Sets the font size to small */
   font-size: small;
 }
 
@@ -160,6 +192,7 @@ of latest-values_container */
 
 #status-message {
   padding: 0.5em;
+  /* Centers the text */
   text-align: center;
 }
 
@@ -171,6 +204,8 @@ of latest-values_container */
 }
 
 #current-alarm_container {
+  /* Sets the margin to auto allowing the browser to set the left and right 
+  margins to equal values */
   margin: auto;
 }
 
@@ -179,6 +214,8 @@ of latest-values_container */
 }
 
 #set-alarm_container {
+  /* Sets the margin to auto allowing the browser to set the left and right 
+  margins to equal values */
   margin: auto;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
@@ -207,6 +244,7 @@ of latest-values_container */
 #current-sensor-t {
   border: solid black 2px;
   border-radius: 5px;
+  /* Sets the font size to small */
   font-size: small;
   padding: 0em 0.5em;
   margin-right: 1em;
@@ -218,6 +256,8 @@ of latest-values_container */
 
 #input_container > #current-input-value_container,
 #input_container > #input-button_container {
+  /* Sets the margin to auto allowing the browser to set the left and right 
+  margins to equal values */
   margin: auto;
 }
 
