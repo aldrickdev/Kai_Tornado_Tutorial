@@ -1,3 +1,9 @@
+# Complete Styling
+
+In this section we are going to add the rest of the styling to the HTML. Below is the CSS, you can copy and paste it into the `index.css` file. We have also added comments to each of the lines explaining how each line changes the appearance of each HTML element.  
+
+## Full CSS file
+``` css
 /* Zero out the margins and padding so that we can start from a clean slate. */
 * {
   margin: 0px;
@@ -335,3 +341,10 @@ child of an element with the id of input_container */
   /* Sets the bottom margin to 1 character width */
   margin-bottom: 1em;
 }
+```
+
+<hr>
+
+
+
+[Back to Beginning](/README.md) | [Prev: *Full HTML*](/docs/markdown/full_html.md) | [Prev: **]()

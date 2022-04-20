@@ -426,4 +426,4 @@ The `div` with the id of `input-button_container` will contain the buttons that 
 
 Next we will speak briefly about completing the styling.  
 
-[Back to Beginning](/README.md) | [Prev: *Styling*](/docs/markdown/styling.md) | [Next: *Comming Soon*]()
+[Back to Beginning](/README.md) | [Prev: *Styling*](/docs/markdown/styling.md) | [Next: *Complete Styling*](/docs/markdown/complete_styling.md)

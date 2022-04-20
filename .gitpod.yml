@@ -18,6 +18,9 @@ tasks:
   - name: Run Tornado Server
     command: python new_server.py
 
+  - name: Get Clean Terminal
+    command: echo Clean Terminal
+
 ports:
   - port: 8888
     onOpen: open-preview
