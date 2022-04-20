@@ -1,6 +1,6 @@
 # Complete Styling
 
-In this section we are going to add the rest of the styling to the HTML. Below is the CSS, you can copy and paste it into the `index.css` file.  
+In this section we are going to add the rest of the styling to the HTML. Below is the CSS, you can copy and paste it into the `index.css` file. We have also added comments to each of the lines explaining how each line changes the appearance of each HTML element.  
 
 ## Full CSS file
 ``` css
@@ -203,70 +203,112 @@ vertical-center  */
   margin-right: 1em;
 }
 
+/* Selects elements with the id status-message */
 #status-message {
+  /* Sets the padding to 0.5 character widths */
   padding: 0.5em;
+  
   /* Centers the text */
   text-align: center;
 }
 
+/* Selects elements with the id alarm_container */
 #alarm_container {
+  /* Extends the width of the element to 2 columns */
   grid-column: 1/3;
+
+  /* Sets the display to grid, with 2 equally sized columns */
   display: grid;
   grid-template-columns: 1fr 1fr;
+
+  /* Sets the top, right and left margins to 1 character width and the bottom 
+  to 0.5 character width */
   margin: 1em 1em 0.5em 1em;
 }
 
+/* Selects element with id current-alarm_container */
 #current-alarm_container {
   /* Sets the margin to auto allowing the browser to set the left and right 
   margins to equal values */
   margin: auto;
 }
 
+/* Selects p elements inside of elements with the id current-alarm_container */
 #current-alarm_container > p {
+  /* Sets the bottom margin to 1 character width */
   margin-bottom: 1em;
 }
 
+/* Select elements with the id of set-alarm_container */
 #set-alarm_container {
   /* Sets the margin to auto allowing the browser to set the left and right 
   margins to equal values */
   margin: auto;
+
+  /* Sets the top and bottom margins to 0.5 character widths */
   margin-top: 0.5em;
   margin-bottom: 0.5em;
 }
 
+/* Select elements that have the id of input-h */
 #input-h {
+  /* Sets the left margin to 2 character widths */
   margin-left: 2em;
 }
 
+/* Select buttons the are child elements of elements with the id of 
+set-alarm_container */
 #set-alarm_container > button {
+  /* Set the top margin to 8px */
   margin-top: 8px;
 }
 
+/* Select elements with the id input_container */
 #input_container {
+  /* Sets the size to 2 columns */
   grid-column: 1/3;
 }
 
+/* Select elements with the id of input_container */
 #input_container {
+  /* Sets the display mode to grid with equally sized columns */
   display: grid;
   grid-template-columns: 1fr 1fr;
+
+  /* Sets the height to 8 character widths */
   height: 8em;
+
+  /* Sets the top margin to 0.5 character widths, and the rest to 1 character 
+  widths */
   margin: 0.5em 1em 1em 1em;
 }
 
+/* Select elements with the id of current-sensor-h and current-sensor-t */
 #current-sensor-h,
 #current-sensor-t {
+  /* Creates a border of a solid black line with a width of 2px, then gives corners
+  a radius of 5px */
   border: solid black 2px;
   border-radius: 5px;
+
   /* Sets the font size to small */
   font-size: small;
+
+  /* Sets the top and bottom padding to 0 and the left and right to 0.5 
+  character width */
   padding: 0em 0.5em;
+
+  /* Sets the right margin to 1 character width */
   margin-right: 1em;
 }
-
+/* Select element with an id of current-sensor-h */
 #current-sensor-h {
+  /* Sets the left margin-left to 2 character width */
   margin-left: 2em;
 }
 
+/* Select element with the id of current-input-value_container or input-button=container that is a 
+child of an element with the id of input_container */
 #input_container > #current-input-value_container,
 #input_container > #input-button_container {
   /* Sets the margin to auto allowing the browser to set the left and right 
@@ -274,21 +316,35 @@ vertical-center  */
   margin: auto;
 }
 
+/* Select element with the id of random1 */
 #random1 {
+  /* Set top and bottom padding of 0.5 character width and the left and right 
+  of 3.5 character width */
   padding: 0.5em 3.5em;
+
+  /* Set the bottom margin to 0.5 character width */
   margin-bottom: 0.5em;
 }
 
+/* Select element with the id of random10 */
 #random10 {
+  /* Set top and bottom padding of 0.5 character width and the left and right 
+  of 3 character width */
   padding: 0.5em 3em;
+
+  /* Set the top margin to 0.5 character width */
   margin-top: 0.5em;
 }
 
+/* Select element to id current-sensor-title */
 #current-sensor-title {
+  /* Sets the bottom margin to 1 character width */
   margin-bottom: 1em;
 }
 ```
 
 <hr>
+
+
 
 [Back to Beginning](/README.md) | [Prev: *Full HTML*](/docs/markdown/full_html.md) | [Prev: **]()
