@@ -1,3 +1,23 @@
+# Websockets
+
+Now that we have our frontend and our backend, lets work on having them communicate.  
+
+## Adding Javascript
+
+First thing we will do here is make sure that we successfully link a Javascript file to our HTML file.  
+
+Open the `index.html` and right below the `body` element and this:  
+
+``` html
+    ....
+  </body>
+  <script src="static/index.js"></script>
+</html>
+```
+
+And just for reference, here is the entire HTML just incase you don't know what I mean.  
+
+``` html
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -153,3 +173,18 @@
   </body>
   <script src="static/index.js"></script>
 </html>
+```
+
+Now let's create that javascript file. Go to the `static` directory and create `index.js`. To test that the javascript file was successfully loaded, add `console.log("Hello World")` inside the  `index.js` file. Now when you run the server again with `python main.py` and you check your browser at `localhost:8888` you should still see the application but, if you open your console you should see `Hello World` printed. 
+
+To open your console, right click anywhere in your browser window and select `inspect`, then you can select `console` from the tabs. Below is what you should see:  
+
+![js_hello_world](/docs/images/js_hello_world.jpg)  
+
+If you are seeing the same thing then, you have successfully linked the files together, now lets start working on the websockets.  
+
+## Websockets "Hello World"  
+
+Here will we create a websocket connection between the frontend and backend allowing data to be passed between them in realtime without the need of refreshing the browser.  
+
+[Back to Beginning](/README.md) | [Prev: *Complete Styling*](/docs/markdown/complete_styling.md) | [Next: **]()
