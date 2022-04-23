@@ -187,4 +187,73 @@ If you are seeing the same thing then, you have successfully linked the files to
 
 Here will we create a websocket connection between the frontend and backend allowing data to be passed between them in realtime without the need of refreshing the browser. 
 
+### Backend  
+
+First lets make our backend accept websocket connections. All we need to do is add a new handler class and give it a few functions that will handle the different events that can happen with a websocket. Some events you can think of are when a client opens and websocket connection to the server, when the client sends a message to the server and then the connection closes. Lets see how we would do this.  
+
+``` python
+class MainHandler(web.RequestHandler):
+  ...
+
+
+# Creating a websocket handler
+class WebSocketHandler(tornado.websocket.WebSocketHandler):
+    # Function that runs when a connection has been established
+    def open(self):
+        # Sends message to the client connected
+        self.write_message("Connection Open")
+
+    # Function that runs when we receive a message
+    def on_message(self, message):
+        # Sends back to the client
+        self.write_message(f"Message from client: {message}")
+        
+    # Function that runs when the connection closes
+    def on_close(self):
+        # prints Connecton Closed
+        print("Connection Closed")
+
+
+if __name__ == '__main__':
+  ...
+```     
+
+In the snippet above, you can see that under the `MainHandler` class, we create a new class called `WebSocketHandler`, in the class we create three functions: `open`, `on_message` and `on_close`.  
+
+
+### Frontend
+
+Now we need to connect to the backend's websockets via the frontend. Below is how we would go about communicating to the backend via websockets.  
+
+``` javascript
+// Create the websocket connection
+let ws = new WebSocket(`ws://${location.host}/ws`);
+
+// Function that defines what happens when the connection is opened
+ws.onopen = function () {
+  // Send a message to the server
+  ws.send("Hello From Client");
+};
+
+// Function that defines what happens when a message is recieved 
+ws.onmessage = function (event) {
+  // Save the data that was received
+  received = JSON.parse(event.data)
+  
+  // console logs the received message
+  console.log(`Client has received: ${received}`)
+};
+
+// Function that defines what happens when the connection is closed
+ws.onclose = function () {
+  // console logs that the connection has been closed
+  console.log('Connection to Backend Lost');
+};
+```
+
+
+
+
+
+
 [Back to Beginning](/README.md) | [Prev: *Complete Styling*](/docs/markdown/complete_styling.md) | [Next: **]()
