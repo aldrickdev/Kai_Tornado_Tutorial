@@ -185,6 +185,6 @@ If you are seeing the same thing then, you have successfully linked the files to
 
 ## Websockets "Hello World"  
 
-Here will we create a websocket connection between the frontend and backend allowing data to be passed between them in realtime without the need of refreshing the browser.  
+Here will we create a websocket connection between the frontend and backend allowing data to be passed between them in realtime without the need of refreshing the browser. 
 
 [Back to Beginning](/README.md) | [Prev: *Complete Styling*](/docs/markdown/complete_styling.md) | [Next: **]()
