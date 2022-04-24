@@ -27,16 +27,18 @@ def create_server():
 class MainHandler(web.RequestHandler):
     # Creating function to handle the GET request type
     def get(self):
-        # returns hello world
-        # self.write("Hello World")
+        # Render index.html
         self.render("index.html")
+
 
 # Creating a websocket handler
 class WebSocketHandler(websocket.WebSocketHandler):
     # Function that runs when a connection has been established
     def open(self):
         # Sends message to the client connected
-        self.write_message("Connection Open")
+        # self.write_message("Connection Open")
+        print("Connection Open")
+        self.write_message("Hello Client")
 
     # Function that runs when we receive a message
     def on_message(self, message):
