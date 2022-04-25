@@ -37,13 +37,13 @@ class WebSocketHandler(websocket.WebSocketHandler):
     def open(self):
         # Sends message to the client connected
         # self.write_message("Connection Open")
-        print("Connection Open")
+        print("Connected to Client")
         self.write_message("Hello Client")
 
     # Function that runs when we receive a message
     def on_message(self, message):
-        # Sends back to the client
-        self.write_message(f"Message from client: {message}")
+        # Prints the message received
+        print(f"Message from Client: {message}")
         
     # Function that runs when the connection closes
     def on_close(self):

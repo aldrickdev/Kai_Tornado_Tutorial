@@ -189,24 +189,36 @@ Here will we create a websocket connection between the frontend and backend allo
 
 ### Backend  
 
-First lets make our backend accept websocket connections. All we need to do is add a new handler class and give it a few functions that will handle the different events that can happen with a websocket. Some events you can think of are when a client opens and websocket connection to the server, when the client sends a message to the server and then the connection closes. Lets see how we would do this.  
+First lets make our backend accept websocket connections. All we need to do is add a new handler class and give it a few functions that will handle the different events that can happen with a websocket. Some events you can think of are when a client opens and websocket connection to the server, when the client sends a message to the server and then the connection closes. Once you have created the handler, add it to the liste of handlers in the `create_server` function. Lets see how we would do this.  
 
 ``` python
+# function that will return the created server
+def create_server():
+    # list of all of the handlers
+    handlers = [
+            (r"/", MainHandler), 
+            (r"/ws", WebSocketHandler)
+        ]
+    ...
+
+
 class MainHandler(web.RequestHandler):
   ...
 
 
 # Creating a websocket handler
-class WebSocketHandler(tornado.websocket.WebSocketHandler):
+class WebSocketHandler(websocket.WebSocketHandler):
     # Function that runs when a connection has been established
     def open(self):
         # Sends message to the client connected
-        self.write_message("Connection Open")
+        # self.write_message("Connection Open")
+        print("Connected to Client")
+        self.write_message("Hello Client")
 
     # Function that runs when we receive a message
     def on_message(self, message):
-        # Sends back to the client
-        self.write_message(f"Message from client: {message}")
+        # Prints the message received
+        print(f"Message from Client: {message}")
         
     # Function that runs when the connection closes
     def on_close(self):
@@ -231,29 +243,53 @@ let ws = new WebSocket(`ws://${location.host}/ws`);
 
 // Function that defines what happens when the connection is opened
 ws.onopen = function () {
+  // Logs that we have connected to the server via websockets
+  console.log("Connected to Server");
   // Send a message to the server
-  ws.send("Hello From Client");
+  ws.send("Hello Sever");
 };
 
 // Function that defines what happens when a message is recieved 
 ws.onmessage = function (event) {
   // Save the data that was received
-  received = JSON.parse(event.data)
+  let received = event.data;
   
-  // console logs the received message
-  console.log(`Client has received: ${received}`)
+  // Logs the received message
+  console.log(`Message from Server: ${received}`);
 };
 
 // Function that defines what happens when the connection is closed
 ws.onclose = function () {
-  // console logs that the connection has been closed
+  // Logs that the connection has been closed
   console.log('Connection to Backend Lost');
 };
 ```
 
+Now that both the frontend and the backend have some basic logic to support websockets, they should be able to communicate.  
+
+What should happen with the code above is when you start the server, it will listen for websocket connections with the `WebSocketHandler` handler that we created. Once you visit the web page, the javascript will run 
+
+``` javascript
+let ws = new WebSocket(`ws://${location.host}/ws`);
+```
+
+This will try to establish a websocket connection to and if successful it will save that connection in the variable `ws` and `open` the connection.
+
+Since we created a `ws.onopen` function in our Javascript, it will run because a websocket connection has been opened, but we also created a `open` function in our server's `WebSocketHandler` so that will also run when they connect. 
+
+Run the server and open the web page in your browser and look at the console. You will see that the console has logged:
+
+![client ws hello world](/docs/images/websocketHello.jpg)
+
+Notice how on the client we have printed `Connected to Server` and then `Message from Server: Hello Client`. So we connected to the server (backend) and then we received a message saying `Hello Cient`. Lets look at what our server has printed. If we look at the terminal you can see that the server has printed something very similar.
+
+![server ws hello world](/docs/images/server_ws.jpg)
+
+Here you can see, that other than the initial command the server prints when it begins, we have `Connected to Client` when the connected is opened then `Message from Client: Hello Server`. 
+
+<hr>
+
+In this section you learned how to setup a simple websocket connection between the server and the client allowing realtime communication. In the next section we will go over how to use this connection to send sensor data from the backend to the frontend and how to display that data to users in the UI instead of the console.
 
 
-
-
-
-[Back to Beginning](/README.md) | [Prev: *Complete Styling*](/docs/markdown/complete_styling.md) | [Next: **]()
+[Back to Beginning](/README.md) | [Prev: *Complete Styling*](/docs/markdown/complete_styling.md) | [Next: *Displaying Data in the Frontend*](/docs/markdown/data_to_frontend.md)
