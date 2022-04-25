@@ -17,4 +17,5 @@ Table of Content
 - [Styling](/docs/markdown/styling.md)
 - [Full HTML](/docs/markdown/full_html.md)
 - [Complete Styling](/docs/markdown/complete_styling.md)
-- [Adding JavaScript](/docs/markdown/javascript.md)
+- [Websockets](/docs/markdown/websockets.md)
+- [Displaying Data in the Frontend](/docs/markdown/data_to_frontend.md)

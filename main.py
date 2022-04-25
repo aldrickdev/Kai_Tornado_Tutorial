@@ -1,6 +1,7 @@
 # imports needed for tornado
 from tornado import web
 from tornado import ioloop
+from tornado import websocket
 
 from pathlib import Path
 import os
@@ -10,7 +11,8 @@ import os
 def create_server():
     # list of all of the handlers
     handlers = [
-            (r"/", MainHandler)
+            (r"/", MainHandler), 
+            (r"/ws", WebSocketHandler)
         ]
     # Dictionary listing some settings, specifically the location of the template and static files are located
     settings = {
@@ -25,9 +27,28 @@ def create_server():
 class MainHandler(web.RequestHandler):
     # Creating function to handle the GET request type
     def get(self):
-        # returns hello world
-        # self.write("Hello World")
+        # Render index.html
         self.render("index.html")
+
+
+# Creating a websocket handler
+class WebSocketHandler(websocket.WebSocketHandler):
+    # Function that runs when a connection has been established
+    def open(self):
+        # Sends message to the client connected
+        # self.write_message("Connection Open")
+        print("Connected to Client")
+        self.write_message("Hello Client")
+
+    # Function that runs when we receive a message
+    def on_message(self, message):
+        # Prints the message received
+        print(f"Message from Client: {message}")
+        
+    # Function that runs when the connection closes
+    def on_close(self):
+        # prints Connecton Closed
+        print("Connection Closed")
         
 
 # Entrypoint
