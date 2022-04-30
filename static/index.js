@@ -110,3 +110,9 @@ ws.onclose = function () {
   // Logs that the connection has been closed
   console.log('Connection to Backend Lost');
 };
+
+app_elements.status.innerHTML = "Testing";
+
+let hum_alarm_value = app_elements.alarm_section.current_alarm.Hum.innerHTML;
+console.log(hum_alarm_value);
+

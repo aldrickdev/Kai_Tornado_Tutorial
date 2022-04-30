@@ -6,7 +6,7 @@ In this section we will be have the frontend request data from the backend so th
 
 <hr>
 
-## Updating the HTML with Javascript
+## Interacting with the HTML using Javascript
 
 First thing we need to do to update the elements in our HTML, is to get a javascript representation of the element, this allows you to apply changes to the elements using javascript.  
 
@@ -114,5 +114,40 @@ let app_elements = {
 ```
 
 <hr>
+
+You can see above, I created an object called `app_elements` where I can access all of the elements the inputs and outputs in this project.  
+
+Lets say we would like to change the status to display "Testing", you would do the follow:  
+
+``` javascript
+app_elements.status.innerHTML = "Testing";
+```
+
+The status would now look like:
+
+![HTML Sensor Data 2022-04-30 at 16 08 14](https://user-images.githubusercontent.com/75044812/166122186-5df48808-106f-46db-a836-3e07fb7fbc45.jpg)
+
+To read in data, it is very similar. Lets type in a value in the Humidity input and the console log it.
+
+``` javascript
+// grab the value 
+let hum_alarm_value = app_elements.alarm_section.current_alarm.Hum.innerHTML;
+
+// console log the value
+console.log(hum_alarm_value);
+```
+
+First we grab the `innerHTML` displayed here:
+
+![hum_alarm](https://user-images.githubusercontent.com/75044812/166123532-b64426a7-1535-4ff6-bc2f-50bd6301eb00.jpg)
+
+and then console log it here:
+
+![hum_alarm_cl](https://user-images.githubusercontent.com/75044812/166123557-8262e7cb-f8ee-40d4-99df-86b54d75e7ec.jpg)
+
+ <hr>
+
+## The buttons Don't Work
+
 
 [Back to Beginning](/README.md) | [Prev: *Websockets*](/docs/markdown/complete_styling.md) | [Next: *Coming Soon*](/docs/markdown)
