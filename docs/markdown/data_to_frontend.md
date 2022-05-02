@@ -149,5 +149,24 @@ and then console log it here:
 
 ## The buttons Don't Work
 
+If you have clicked the buttons, you probably have noticed that nothing happens, lets change that. Lets make the `1 Random Value` button console log `"Hello"` when it is clicked.
+
+Open the `index.html` and we will need to add an event to the button. Below you can see that I added an `onclick` attribute with the value `random1()`.
+
+``` html
+<button id="random1" onclick="random1()">1 Random Value</button>
+```
+
+Then we need to go to our `index.js` and create that `random1` function that the button will run when it is clicked on.
+
+``` javascript
+function random1() {
+  console.log("Hello");
+}
+```
+
+Above you can see that we are just console logging `"Hello"`. Now you can run the server and click on `random1` and you will see `Hello` in the console.
+
+![random1_hello](https://user-images.githubusercontent.com/75044812/166174352-05e838a8-7df3-4bf2-bdb2-8fb8e08a8719.jpg)
 
 [Back to Beginning](/README.md) | [Prev: *Websockets*](/docs/markdown/complete_styling.md) | [Next: *Coming Soon*](/docs/markdown)

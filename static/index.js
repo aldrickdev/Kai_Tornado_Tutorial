@@ -116,3 +116,6 @@ app_elements.status.innerHTML = "Testing";
 let hum_alarm_value = app_elements.alarm_section.current_alarm.Hum.innerHTML;
 console.log(hum_alarm_value);
 
+function random1() {
+  console.log("Hello");
+}
