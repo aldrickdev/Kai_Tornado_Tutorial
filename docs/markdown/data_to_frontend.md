@@ -169,4 +169,118 @@ Above you can see that we are just console logging `"Hello"`. Now you can run th
 
 ![random1_hello](https://user-images.githubusercontent.com/75044812/166174352-05e838a8-7df3-4bf2-bdb2-8fb8e08a8719.jpg)
 
-[Back to Beginning](/README.md) | [Prev: *Websockets*](/docs/markdown/complete_styling.md) | [Next: *Coming Soon*](/docs/markdown)
+## Setting an alarm
+
+Now that we can add functions to our buttons, lets work on setting our current alarm values. 
+
+![alarm](https://user-images.githubusercontent.com/75044812/166175642-289b3208-913e-47ea-9cfb-fb7ca87cea38.jpg)
+
+Above you can see we have 2 text inputs and a button on the right, and then the 
+values for the currently selected alarm thresholds, which are currently showing 
+50 for humidity and 100 for temperature. We will make the `Set Alarm` button 
+take the values you enter in the input fields and then displays them in place 
+of default, 50 and 100.
+
+Lets head to the `index.html` and add the `onclick` attribute on the 
+`Set Alarm` button. The button will now look like:
+
+``` html
+<button id="set-alarm-button" onclick="set_alarm()">Set Alarm</button>
+```
+
+Now lets go to the `index.js` and create the function.
+
+``` javascript
+function set_alarm() {
+  // Section1: Grabs the values that we entered for the humidity and temperature 
+  let new_hum = app_elements.alarm_section.input_alarm.Hum.value;
+  let new_temp = app_elements.alarm_section.input_alarm.Temp.value;
+
+  // Section 2: Sets the current alarm thresholds to the entered value
+  app_elements.alarm_section.current_alarm.Hum.innerHTML = new_hum;
+  app_elements.alarm_section.current_alarm.Temp.innerHTML = new_temp;
+
+  // Section 3: Clearing the inputs
+  app_elements.alarm_section.input_alarm.Hum.value = "";
+  app_elements.alarm_section.input_alarm.Temp.value = "";
+}
+```
+
+You can see in the function that it has 3 sections:
+
+- `Section 1:` Here we just save the currently entered values to variables
+- `Section 2:` Here we take the variables created in Section 1 and display 
+    under the `Current Alarm Values` location
+- `Section 3:` Lastly we clear the values that were entered
+
+Once the change above have been done you can try the button out. Below is the 
+behavior you should be expecting.
+
+![set_alarm](https://user-images.githubusercontent.com/75044812/167275012-558478dc-de3e-46ef-9c37-fa83e4531289.gif)
+
+<hr>
+
+## Generate a Random Value
+
+In this section we will make the `1 Random Value` button get a button from the 
+backend and then display it on the `Last 10 Values` section on the top left.
+
+Below are the steps that we need to take to do this.
+
+1. Clear the default values in the sections `Last 10 Values` and 
+`Stats on the last 10 values`
+2. Make the `1 Random Value` button ask the backend for a humidity and 
+temperature value
+3. Receive the value from the backend and then display it in the `Current 
+Sensor Values`
+
+When we first start the project and open it on our browser we have 50 and 100 
+being displayed for whole `Lat 10 values` section. We should empty that out 
+as displaying this isn't accurate. To do this we can just use a loop that will 
+go to each row and enter in an empty string.
+
+``` javascript
+// ===== Clear the Last 10 values Section =====
+for (let i = 0; i < 10; i++) {
+  app_elements.latest_values_section.Hum[i].innerHTML = "";
+  app_elements.latest_values_section.Temp[i].innerHTML = "";
+}
+```
+
+I simply added the loop above to the bottom of the `index.js` file. You can 
+see that this is simple for loop that just clears the Humidity and Temperature 
+in each row. 
+
+Next we clear the values in the `Stats on the last 10 values` 
+Section.
+
+``` javascript
+// ===== Clear the Stats Section =====
+// === Average Section ===
+app_elements.statistics_section.Avg.Hum.innerHTML = "";
+app_elements.statistics_section.Avg.Temp.innerHTML = "";
+
+// === Max Section ===
+app_elements.statistics_section.Max.Hum.innerHTML = "";
+app_elements.statistics_section.Max.Temp.innerHTML = "";
+
+// === Min Section ===
+app_elements.statistics_section.Min.Hum.innerHTML = "";
+app_elements.statistics_section.Min.Temp.innerHTML = "";
+// =====
+```
+
+Here I just go through each of the stats and clear the value for the Humidity 
+and the Termperature. This can also be added to the bottom of the `index.js` 
+file.
+
+<hr>
+
+Now we need the `1 Random Value` button to send a web socket message to the 
+backend asking it to send over a value for the Humidity and Temperature.
+
+
+
+
+[Back to Beginning](/README.md) | [Prev: *Websockets*](
+    /docs/markdown/complete_styling.md) | [Next: *Coming Soon*](/docs/markdown)

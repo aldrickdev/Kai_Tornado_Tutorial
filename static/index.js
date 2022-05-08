@@ -116,6 +116,43 @@ app_elements.status.innerHTML = "Testing";
 let hum_alarm_value = app_elements.alarm_section.current_alarm.Hum.innerHTML;
 console.log(hum_alarm_value);
 
+// ===== Ask back for 1 Random Value
 function random1() {
   console.log("Hello");
 }
+// =====
+
+function set_alarm() {
+  // Grabs the values that we entered for the humidity and temperature 
+  let new_hum = app_elements.alarm_section.input_alarm.Hum.value;
+  let new_temp = app_elements.alarm_section.input_alarm.Temp.value;
+
+  // Sets the current alarm thresholds to the entered value
+  app_elements.alarm_section.current_alarm.Hum.innerHTML = new_hum;
+  app_elements.alarm_section.current_alarm.Temp.innerHTML = new_temp;
+
+  // Clearing the inputs
+  app_elements.alarm_section.input_alarm.Hum.value = "";
+  app_elements.alarm_section.input_alarm.Temp.value = "";
+}
+
+// ===== Clear the Last 10 values Section =====
+for (let i = 0; i < 10; i++) {
+  app_elements.latest_values_section.Hum[i].innerHTML = "";
+  app_elements.latest_values_section.Temp[i].innerHTML = "";
+}
+// =====
+
+// ===== Clear the Stats Section =====
+// === Average Section ===
+app_elements.statistics_section.Avg.Hum.innerHTML = "";
+app_elements.statistics_section.Avg.Temp.innerHTML = "";
+
+// === Max Section ===
+app_elements.statistics_section.Max.Hum.innerHTML = "";
+app_elements.statistics_section.Max.Temp.innerHTML = "";
+
+// === Min Section ===
+app_elements.statistics_section.Min.Hum.innerHTML = "";
+app_elements.statistics_section.Min.Temp.innerHTML = "";
+// =====
