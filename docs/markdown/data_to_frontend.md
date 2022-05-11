@@ -276,9 +276,59 @@ file.
 
 <hr>
 
-Now we need the `1 Random Value` button to send a web socket message to the 
+Now we need the `1 Random Value` button to send a websocket message to the 
 backend asking it to send over a value for the Humidity and Temperature.
 
+First lets assign a function to the `onclick` attribute of the 
+`1 Random Value` button. 
+
+``` html
+<button id="random1" onclick="random1()">1 Random Value</button>
+```
+
+Now we need to create this funtion in the `index.js`.
+
+``` javascript
+// Section 1:
+// === Creates a structure for what a websocket message should look like
+let message = {
+  packet: '',
+  data: {},
+};
+
+// Section 2:
+// === Ask backend for 1 Random Value ===
+function random1() {
+  // Creates the message that we will send to the backend
+  message.packet = "1 Random Value";
+  message.data = "";
+
+  // Stringify the message
+  var string_message = JSON.stringify(message)
+
+  // Send the packet
+  ws.send(string_message)
+}
+```
+
+Above you can see that I created 2 sections, section 1 is where I created the 
+structure of how our websocket messages. The structure is called `message` and 
+it has 2 parts, the `packet` which is where we would put the title, 
+essentially what the packet is for and `data` which is where you would put the 
+data thats being sent.
+
+In section 2, we have the function that will run when the `1 Random Value` 
+button is clicked. you can see that we first fill out the message information 
+`packet` and `data`, note how data is empty as we don't need to send and data 
+to the backend here. Then we convert that message structure into a string 
+with `JSON.stringify`. This needs to happen because when cannot send the 
+message structure as is through a websocket. After converting the message to 
+a string we send the message to the backend with `ws.send`.
+
+<hr>
+
+Now that we sent a packet to the backend, let's tell the backend what to do 
+when it receives this packet.
 
 
 

@@ -85,10 +85,21 @@ let app_elements = {
   },
 };
 
-// Create the websocket connection
+// ===== Websocket Section =====
+
+// === Creates a structure for what a websocket message should look like
+let message = {
+  packet: '',
+  data: {},
+};
+// === Variable where we will put the websocket messages we receive
+let received;
+
+
+// === Creates the websocket connection
 let ws = new WebSocket(`ws://${location.host}/ws`);
 
-// Function that defines what happens when the connection is opened
+// === Defines what happens when the connection is opened ===
 ws.onopen = function () {
   // Logs that we have connected to the server via websockets
   console.log("Connected to Server");
@@ -96,32 +107,45 @@ ws.onopen = function () {
   ws.send("Hello Sever");
 };
 
-// Function that defines what happens when a message is recieved 
+// === Defines what happens when a message is recieved ===
 ws.onmessage = function (event) {
   // Save the data that was received
-  let received = event.data;
+  received = event.data;
+
+  
   
   // Logs the received message
   console.log(`Message from Server: ${received}`);
 };
 
-// Function that defines what happens when the connection is closed
+// === Defines what happens when the connection is closed ===
 ws.onclose = function () {
   // Logs that the connection has been closed
   console.log('Connection to Backend Lost');
 };
 
+// === Ask backend for 1 Random Value ===
+function random1() {
+  // Creates the message that we will send to the backend
+  message.packet = "1 Random Value";
+  message.data = "";
+
+  // Stringify the message
+  var string_message = JSON.stringify(message)
+
+  // Send the packet
+  ws.send(string_message)
+}
+// ===== End Websocket Section
+
 app_elements.status.innerHTML = "Testing";
 
 let hum_alarm_value = app_elements.alarm_section.current_alarm.Hum.innerHTML;
 console.log(hum_alarm_value);
+// ===== 
 
-// ===== Ask back for 1 Random Value
-function random1() {
-  console.log("Hello");
-}
-// =====
 
+// ===== Function to set the alarm =====
 function set_alarm() {
   // Grabs the values that we entered for the humidity and temperature 
   let new_hum = app_elements.alarm_section.input_alarm.Hum.value;
@@ -135,6 +159,7 @@ function set_alarm() {
   app_elements.alarm_section.input_alarm.Hum.value = "";
   app_elements.alarm_section.input_alarm.Temp.value = "";
 }
+// =====
 
 // ===== Clear the Last 10 values Section =====
 for (let i = 0; i < 10; i++) {
