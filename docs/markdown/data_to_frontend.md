@@ -1,14 +1,18 @@
 # Displaying Data in the Frontend
 
-In the last section we worked on setting up our first websocket connection between our frontend and backend. 
+In the last section we worked on setting up our first websocket connection 
+between our frontend and backend. 
 
-In this section we will be have the frontend request data from the backend so that it can display the data to users. 
+In this section we will be have the frontend request data from the backend so 
+that it can display the data to users. 
 
 <hr>
 
 ## Interacting with the HTML using Javascript
 
-First thing we need to do to update the elements in our HTML, is to get a javascript representation of the element, this allows you to apply changes to the elements using javascript.  
+First thing we need to do to update the elements in our HTML, is to get a 
+javascript representation of the element, this allows you to apply changes to 
+the elements using javascript.  
 
 ``` javascript
 // Grab the element with the id "test"
@@ -18,11 +22,13 @@ let element = document.querySelector("#test");
 let prg = document.querySelector(".program");
 ```
 
-Notice, to grab an element with a specific id, you use `#` and `.` for a specific class. 
+Notice, to grab an element with a specific id, you use `#` and `.` for a 
+specific class. 
 
 <hr>
 
-Below is how I grab and organize all of the elements I will need to interact with.  
+Below is how I grab and organize all of the elements I will need to interact 
+with.  
 
 ``` javascript
 // Application Elements
@@ -115,9 +121,11 @@ let app_elements = {
 
 <hr>
 
-You can see above, I created an object called `app_elements` where I can access all of the elements the inputs and outputs in this project.  
+You can see above, I created an object called `app_elements` where I can 
+access all of the elements the inputs and outputs in this project.  
 
-Lets say we would like to change the status to display "Testing", you would do the follow:  
+Lets say we would like to change the status to display "Testing", you would do 
+the follow:  
 
 ``` javascript
 app_elements.status.innerHTML = "Testing";
@@ -127,7 +135,8 @@ The status would now look like:
 
 ![HTML Sensor Data 2022-04-30 at 16 08 14](https://user-images.githubusercontent.com/75044812/166122186-5df48808-106f-46db-a836-3e07fb7fbc45.jpg)
 
-To read in data, it is very similar. Lets type in a value in the Humidity input and the console log it.
+To read in data, it is very similar. Lets type in a value in the Humidity 
+input and the console log it.
 
 ``` javascript
 // grab the value 
@@ -149,15 +158,19 @@ and then console log it here:
 
 ## The buttons Don't Work
 
-If you have clicked the buttons, you probably have noticed that nothing happens, lets change that. Lets make the `1 Random Value` button console log `"Hello"` when it is clicked.
+If you have clicked the buttons, you probably have noticed that nothing 
+happens, lets change that. Lets make the `1 Random Value` button console log 
+`"Hello"` when it is clicked.
 
-Open the `index.html` and we will need to add an event to the button. Below you can see that I added an `onclick` attribute with the value `random1()`.
+Open the `index.html` and we will need to add an event to the button. Below 
+you can see that I added an `onclick` attribute with the value `random1()`.
 
 ``` html
 <button id="random1" onclick="random1()">1 Random Value</button>
 ```
 
-Then we need to go to our `index.js` and create that `random1` function that the button will run when it is clicked on.
+Then we need to go to our `index.js` and create that `random1` function that 
+the button will run when it is clicked on.
 
 ``` javascript
 function random1() {
@@ -165,13 +178,15 @@ function random1() {
 }
 ```
 
-Above you can see that we are just console logging `"Hello"`. Now you can run the server and click on `random1` and you will see `Hello` in the console.
+Above you can see that we are just console logging `"Hello"`. Now you can run 
+the server and click on `random1` and you will see `Hello` in the console.
 
 ![random1_hello](https://user-images.githubusercontent.com/75044812/166174352-05e838a8-7df3-4bf2-bdb2-8fb8e08a8719.jpg)
 
 ## Setting an alarm
 
-Now that we can add functions to our buttons, lets work on setting our current alarm values. 
+Now that we can add functions to our buttons, lets work on setting our current 
+alarm values. 
 
 ![alarm](https://user-images.githubusercontent.com/75044812/166175642-289b3208-913e-47ea-9cfb-fb7ca87cea38.jpg)
 
@@ -325,12 +340,117 @@ with `JSON.stringify`. This needs to happen because when cannot send the
 message structure as is through a websocket. After converting the message to 
 a string we send the message to the backend with `ws.send`.
 
+Last thing to do is to not send anything to the backend when the connection 
+opens as this isn't needed anymore.
+
+``` javascript
+// === Defines what happens when the connection is opened ===
+ws.onopen = function () {
+  // Logs that we have connected to the server via websockets
+  console.log("Connected to Server");
+};
+```
+
 <hr>
 
-Now that we sent a packet to the backend, let's tell the backend what to do 
-when it receives this packet.
+Now that we can send a packet to the backend, let's tell the backend what to do
+ when it receives this packet. 
 
+``` python
+# Function that runs when we receive a message
+def on_message(self, message):
+    # Prints the message received
+    print(f"Message from Client: {message}")
+    
+    # de-stringify the message
+    json_message = json.loads(message)
+    
+    # check what is the packet is about
+    if (json_message["packet"] == "1 Random Value"):
+        # packet is asking for 1 random value to be sent to the frontend
+        
+        # creates the message to send
+        message = {
+            "packet": "1 Random Value",
+            "data": 10
+        }
+        
+        # stringify the message
+        stringified_message = json.dumps(message)
+        
+        # send message to frontend
+        self.write_message(stringified_message)
+```
 
+So in the code above you can see that I update the `on_message` function. 
+Below I'll go through the stuff I've added:
 
-[Back to Beginning](/README.md) | [Prev: *Websockets*](
-    /docs/markdown/complete_styling.md) | [Next: *Coming Soon*](/docs/markdown)
+Since the frontend needs to sent the message as a string, we need to turn it 
+back into an object we can work with. 
+
+``` python
+# de-stringify the message
+json_message = json.loads(message)
+```
+
+Now that the message is in the form of an object we can check what the packet 
+is so we can decide what we need to do next. Below you can see we check if the 
+packet has the value of `1 Random Value` then we create a message dictionary 
+with the value we want to send to the frontend in the `data` in this case we 
+are just sending the value of 10. Lastly we stringify the message then send it.
+
+``` python
+# check what is the packet is about
+if (json_message["packet"] == "1 Random Value"):
+    # packet is asking for 1 random value to be sent to the frontend
+    
+    # creates the message to send
+    message = {
+        "packet": "1 Random Value",
+        "data": 10
+    }
+    
+    # stringify the message
+    stringified_message = json.dumps(message)
+    
+    # send message to frontend
+    self.write_message(stringified_message)
+```
+
+<hr>
+
+The backend is now sending the value to the frontend. Looking at the 
+`onmessage` function in the `index.js`, it looks like the message the frontend 
+receives will just be printed to the console. 
+
+``` javascript
+// === Defines what happens when a message is recieved ===
+ws.onmessage = function (event) {
+  // Save the data that was received
+  received = event.data;
+
+  // Logs the received message
+  console.log(`Message from Server: ${received}`);
+};
+```
+
+Let's run the server and press the `1 Random Value` button and look at the 
+console.
+
+![data_to_frontend](https://user-images.githubusercontent.com/75044812/167973130-cd64f32a-dad5-4128-9ae7-cbefcf378f21.gif)
+
+Here you can see that when I click on the `1 Random Value` button, the backend
+ sends a packet to the frontend with the value of 10 as data. The frontend then
+ prints that data to to console.
+
+<hr>
+
+In this section we learned how to send packets between the frontend and 
+backend. In the next section we will expand on this by generating the proper 
+humidity and temperature values so that we can send those to the frontend and 
+then displaying the results.
+
+[Back to Beginning](/README.md) | 
+[Prev: *Websockets*](/docs/markdown/complete_styling.md) | 
+[Next: *Generating Humidity and Temperature Values*](
+    /docs/markdown/generating_values.md)
