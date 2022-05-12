@@ -92,9 +92,6 @@ let message = {
   packet: '',
   data: {},
 };
-// === Variable where we will put the websocket messages we receive
-let received;
-
 
 // === Creates the websocket connection
 let ws = new WebSocket(`ws://${location.host}/ws`);
@@ -103,8 +100,6 @@ let ws = new WebSocket(`ws://${location.host}/ws`);
 ws.onopen = function () {
   // Logs that we have connected to the server via websockets
   console.log("Connected to Server");
-  // Send a message to the server
-  ws.send("Hello Sever");
 };
 
 // === Defines what happens when a message is recieved ===
@@ -112,8 +107,6 @@ ws.onmessage = function (event) {
   // Save the data that was received
   received = event.data;
 
-  
-  
   // Logs the received message
   console.log(`Message from Server: ${received}`);
 };

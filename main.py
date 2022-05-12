@@ -5,6 +5,7 @@ from tornado import websocket
 
 from pathlib import Path
 import os
+import json
 
 
 # function that will return the created server
@@ -44,6 +45,25 @@ class WebSocketHandler(websocket.WebSocketHandler):
     def on_message(self, message):
         # Prints the message received
         print(f"Message from Client: {message}")
+        
+        # de-stringify the message
+        json_message = json.loads(message)
+        
+        # check what is the packet is about
+        if (json_message["packet"] == "1 Random Value"):
+            # packet is asking for 1 random value to be sent to the frontend
+            
+            # creates the message to send
+            message = {
+                "packet": "1 Random Value",
+                "data": 10
+            }
+            
+            # stringify the message
+            stringified_message = json.dumps(message)
+            
+            # send message to frontend
+            self.write_message(stringified_message)
         
     # Function that runs when the connection closes
     def on_close(self):
