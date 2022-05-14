@@ -79,7 +79,81 @@ button.
 
 <hr>
 
+Now that we have a way to generate the values, lets make use of it in our 
+application. Let's go to the `main.py` and update the `WebSocketHandler` class 
+to make use of the `PsuedoSensor` class. 
+
+First at the top of the `main.py` file we need to import the `PsuedoSensor` 
+class. 
+
+``` python
+from psuedoSensor import PsuedoSensor
+
+...
+```
+
+Now we need to give the `WebSocketHandler` class and instance of the 
+`PsuedoSensor`.
+
+``` python
+# Creating a websocket handler
+class WebSocketHandler(websocket.WebSocketHandler):
+    # Create an instance of the PsuedoSensor class
+    ps = PsuedoSensor()
+
+...
+```
+
+Now, within the `WebSocketHandler` class we can use the `PsuedoSensor` 
+instance with `self.ps`. Let's update the `onmessage` method to send generated 
+values as data instead of 10. 
+
+``` python
+# Function that runs when we receive a message
+def on_message(self, message):
+    # Prints the message received
+    print(f"Message from Client: {message}")
+    
+    # de-stringify the message
+    json_message = json.loads(message)
+    
+    # check what is the packet is about
+    if (json_message["packet"] == "1 Random Value"):
+        # packet is asking for 1 random value to be sent to the frontend
+        
+        # creates the message to send
+        message = {
+            "packet": "1 Random Value",
+            "data": self.ps.generate_values()
+        }
+        
+        # stringify the message
+        stringified_message = json.dumps(message)
+        
+        # send message to frontend
+        self.write_message(stringified_message)
+```
+
+Notice how for data, now we use `self.ps.generate_values()` to get values and 
+that is what we send in the message. If we run the server and click the 
+`1 Random Value` button you can see in the console that we get different 
+values each time. 
+
+![1rv](https://bit.ly/3FKCiRS)
+
+Notice that now we are sending randomly generated values to the frontend. 
+
+<hr>
+
+In this section we learned how to create a separate class that serve a 
+specific purpose and then make use of it in the main application. 
+
+In the next section we will work on getting the frontend to display the values 
+that it just received in the `Last 10 values` section.
+
+<hr>
+
 [Back to Beginning](/README.md) |
 [Prev: *Generating Humidity and Temperature Values*](
     /docs/markdown/generating_values.md) 
-[Prev: *Coming Soon*](/docs/markdown)
+[Next: *Display Generated Values*](/docs/markdown/display_generated_values.md)

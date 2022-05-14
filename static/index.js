@@ -1,4 +1,4 @@
-// Application Elements
+// ===== Application Elements =====
 let app_elements = {
   // Section for displaying the latest values
   latest_values_section: {
@@ -84,9 +84,21 @@ let app_elements = {
     },
   },
 };
+// ===== End Appication Elements
+
+// ===== Helper Functions =====
+function two_decimals(num) {
+  // Convert string to number
+  let value = Number(num);
+  
+  // Rounds to the nearest hundreth
+  let rounded_value = value.toFixed(2);
+  
+  return rounded_value;
+}
+// ===== End Helper Functions
 
 // ===== Websocket Section =====
-
 // === Creates a structure for what a websocket message should look like
 let message = {
   packet: '',
@@ -105,10 +117,25 @@ ws.onopen = function () {
 // === Defines what happens when a message is recieved ===
 ws.onmessage = function (event) {
   // Save the data that was received
-  received = event.data;
+  let received = event.data;
 
   // Logs the received message
   console.log(`Message from Server: ${received}`);
+
+  // de-stringify the packet received 
+  let received_obj = JSON.parse(received);
+
+  // Extract the humidity and temperature values from the packet
+  let long_hum_value = received_obj.data[0];
+  let long_temp_value = received_obj.data[1];
+
+  // Round to the nearest hundreth
+  let short_hum_value = two_decimals(long_hum_value);
+  let short_temp_value = two_decimals(long_temp_value);
+
+  // Display the humidity and temperature values in the first entry
+  app_elements.latest_values_section.Hum[0].innerHTML = short_hum_value;
+  app_elements.latest_values_section.Temp[0].innerHTML = short_temp_value;
 };
 
 // === Defines what happens when the connection is closed ===
@@ -130,13 +157,6 @@ function random1() {
   ws.send(string_message)
 }
 // ===== End Websocket Section
-
-app_elements.status.innerHTML = "Testing";
-
-let hum_alarm_value = app_elements.alarm_section.current_alarm.Hum.innerHTML;
-console.log(hum_alarm_value);
-// ===== 
-
 
 // ===== Function to set the alarm =====
 function set_alarm() {

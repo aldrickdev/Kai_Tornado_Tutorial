@@ -7,6 +7,8 @@ from pathlib import Path
 import os
 import json
 
+from psuedoSensor import PsuedoSensor
+
 
 # function that will return the created server
 def create_server():
@@ -34,6 +36,9 @@ class MainHandler(web.RequestHandler):
 
 # Creating a websocket handler
 class WebSocketHandler(websocket.WebSocketHandler):
+    # Create an instance of the PsuedoSensor class
+    ps = PsuedoSensor()
+    
     # Function that runs when a connection has been established
     def open(self):
         # Sends message to the client connected
@@ -56,7 +61,7 @@ class WebSocketHandler(websocket.WebSocketHandler):
             # creates the message to send
             message = {
                 "packet": "1 Random Value",
-                "data": 10
+                "data": self.ps.generate_values()
             }
             
             # stringify the message
