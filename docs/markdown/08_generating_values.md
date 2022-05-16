@@ -154,6 +154,5 @@ that it just received in the `Last 10 values` section.
 <hr>
 
 [Back to Beginning](/README.md) |
-[Prev: *Generating Humidity and Temperature Values*](
-    /docs/markdown/generating_values.md) 
-[Next: *Display Generated Values*](/docs/markdown/display_generated_values.md)
+[Prev: *Displaying Data in the Frontend*](/docs/markdown/07_data_to_frontend.md)
+[Next: *Display Generated Values*](/docs/markdown/09_display_generated_values.md)

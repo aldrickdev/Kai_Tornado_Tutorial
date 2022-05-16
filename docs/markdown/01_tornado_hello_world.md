@@ -109,4 +109,6 @@ Once you have this all typed out, you can save, then run this program with `pyth
 
 You have created the base of this project, a simple "hello world" tornado server.  
 
-[Back to Beginning](/README.md) | [Prev: *Backend Prep*](/docs/markdown/backend_prep.md) | [Prev: *Rendering HTML*](/docs/markdown/rendering_html.md)
+[Back to Beginning](/README.md) | 
+[Prev: *Backend Prep*](/docs/markdown/00_backend_prep.md) | 
+[Prev: *Rendering HTML*](/docs/markdown/02_rendering_html.md)

@@ -292,4 +292,6 @@ Here you can see, that other than the initial command the server prints when it 
 In this section you learned how to setup a simple websocket connection between the server and the client allowing realtime communication. In the next section we will go over how to use this connection to send sensor data from the backend to the frontend and how to display that data to users in the UI instead of the console.
 
 
-[Back to Beginning](/README.md) | [Prev: *Complete Styling*](/docs/markdown/complete_styling.md) | [Next: *Displaying Data in the Frontend*](/docs/markdown/data_to_frontend.md)
+[Back to Beginning](/README.md) | 
+[Prev: *Complete Styling*](/docs/markdown/05_complete_styling.md) | 
+[Next: *Displaying Data in the Frontend*](/docs/markdown/07_data_to_frontend.md)

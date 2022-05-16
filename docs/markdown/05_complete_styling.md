@@ -347,4 +347,6 @@ child of an element with the id of input_container */
 
 
 
-[Back to Beginning](/README.md) | [Prev: *Full HTML*](/docs/markdown/full_html.md) | [Next: *Websockets*](/docs/markdown/websockets.md)
+[Back to Beginning](/README.md) | 
+[Prev: *Full HTML*](/docs/markdown/04_full_html.md) | 
+[Next: *Websockets*](/docs/markdown/06_websockets.md)

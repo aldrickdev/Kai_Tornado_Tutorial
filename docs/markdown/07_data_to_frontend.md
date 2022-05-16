@@ -353,8 +353,8 @@ ws.onopen = function () {
 
 <hr>
 
-Now that we can send a packet to the backend, let's tell the backend what to do
- when it receives this packet. 
+Now that we can send a packet to the backend, let's tell the backend what to 
+do when it receives this packet. 
 
 ``` python
 # Function that runs when we receive a message
@@ -451,6 +451,5 @@ humidity and temperature values so that we can send those to the frontend and
 then displaying the results.
 
 [Back to Beginning](/README.md) | 
-[Prev: *Websockets*](/docs/markdown/complete_styling.md) | 
-[Next: *Generating Humidity and Temperature Values*](
-    /docs/markdown/generating_values.md)
+[Prev: *Websockets*](/docs/markdown/06_websockets.md) | 
+[Next: *Generating Humidity and Temperature Values*](/docs/markdown/08_generating_values.md)

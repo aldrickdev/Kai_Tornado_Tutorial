@@ -174,6 +174,5 @@ top similar to pushing values on to a queue.
 <hr>
 
 [Back to Beginning](/README.md) |
-[Prev: *Generating Humidity and Temperature Values*](
-    /docs/markdown/generating_values.md) |
-[Next: *Queue Like List*](/docs/markdown/queue_like_list.md)
+[Prev: *Generating Humidity and Temperature Values*](/docs/markdown/08_generating_values.md) |
+[Next: *Queue Like List*](/docs/markdown/10_queue_like_list.md)

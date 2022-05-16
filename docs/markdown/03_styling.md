@@ -59,4 +59,6 @@ The server should run and at `localhost:8888` you should see:
 
 If you are seeing that the text is now red, then you have properly linked the css file.  
 
-[Back to Beginning](/README.md) | [Prev: *Rending HTML*](/docs/markdown/rendering_html.md) | [Prev: *Full HTML*](/docs/markdown/full_html.md)
+[Back to Beginning](/README.md) | 
+[Prev: *Rending HTML*](/docs/markdown/02_rendering_html.md) | 
+[Prev: *Full HTML*](/docs/markdown/04_full_html.md)

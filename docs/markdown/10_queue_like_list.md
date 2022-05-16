@@ -84,5 +84,5 @@ displaying those calculations in the `Stats on the last 10 values` section.
 <hr>
 
 [Back to Beginning](/README.md) |
-[Prev: *Queue Like List*](/docs/markdown/queue_like_list.md) |
-[Next: *Coming Soon*](/docs/markdown)
+[Prev: *Queue Like List*](/docs/markdown/09_display_generated_values.md) |
+[Next: *Displaying Stats*](/docs/markdown/11_stats.md)

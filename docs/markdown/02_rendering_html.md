@@ -59,4 +59,6 @@ When you open your browser to `localhost:8888` you should see:
 
 The fact that you can now see `Hello World from an HTML File`, should tell you that you are pulling in the `index.html` file from the `templates` directory.  
 
-[Back to Beginning](/README.md) | [Prev: *Tornado, Hello World*](/docs/markdown/tornado_hello_world.md) | [Next: *Styling*](/docs/markdown/styling.md)
+[Back to Beginning](/README.md) | 
+[Prev: *Tornado, Hello World*](/docs/markdown/01_tornado_hello_world.md) | 
+[Next: *Styling*](/docs/markdown/03_styling.md)
