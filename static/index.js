@@ -87,7 +87,7 @@ let app_elements = {
 // ===== End Appication Elements
 
 // ===== Global State =====
-let displayed_values = 0;
+let value_count = 0;
 // ===== End Global State
 
 // ===== Helper Functions =====
@@ -99,6 +99,38 @@ function two_decimals(num) {
   let rounded_value = value.toFixed(2);
   
   return rounded_value;
+}
+
+function calculate_avg() {
+  // Holds sum
+  let hum_sum  = 0;
+  let temp_sum = 0;
+
+  // Holds averages
+  let hum_avg  = 0;
+  let temp_avg = 0;
+
+  // Holds string representation of the average
+  let s_hum_avg  = "";
+  let s_temp_avg = "";
+
+  // Calculates sum
+  for (let i = 0; i < value_count; i++) {
+    hum_sum  += Number(app_elements.latest_values_section.Hum[i].innerHTML)
+    temp_sum += Number(app_elements.latest_values_section.Temp[i].innerHTML)
+  }
+
+  // Calculates average
+  hum_avg  = two_decimals(hum_sum / value_count);
+  temp_avg = two_decimals(temp_sum / value_count);
+
+  // Covert average to string
+  s_hum_avg  = hum_avg.toString()
+  s_temp_avg = temp_avg.toString()
+
+  // Display the calculated averages
+  app_elements.statistics_section.Avg.Hum.innerHTML  = s_hum_avg
+  app_elements.statistics_section.Avg.Temp.innerHTML = s_temp_avg
 }
 // ===== End Helper Functions
 
@@ -146,6 +178,14 @@ ws.onmessage = function (event) {
   // Display the humidity and temperature values in the first entry
   app_elements.latest_values_section.Hum[0].innerHTML = short_hum_value;
   app_elements.latest_values_section.Temp[0].innerHTML = short_temp_value;
+
+  // Count of how many generated values are being displayed, used to calculate 
+  // the average
+  if (value_count < app_elements.latest_values_section.Hum.length) {
+    value_count++;
+  }
+
+  calculate_avg();
 };
 
 // === Defines what happens when the connection is closed ===
@@ -193,14 +233,14 @@ for (let i = 0; i < 10; i++) {
 
 // ===== Clear the Stats Section =====
 // === Average Section ===
-app_elements.statistics_section.Avg.Hum.innerHTML = "";
-app_elements.statistics_section.Avg.Temp.innerHTML = "";
+app_elements.statistics_section.Avg.Hum.innerHTML = "0";
+app_elements.statistics_section.Avg.Temp.innerHTML = "0";
 
 // === Max Section ===
-app_elements.statistics_section.Max.Hum.innerHTML = "";
-app_elements.statistics_section.Max.Temp.innerHTML = "";
+app_elements.statistics_section.Max.Hum.innerHTML = "0";
+app_elements.statistics_section.Max.Temp.innerHTML = "0";
 
 // === Min Section ===
-app_elements.statistics_section.Min.Hum.innerHTML = "";
-app_elements.statistics_section.Min.Temp.innerHTML = "";
+app_elements.statistics_section.Min.Hum.innerHTML = "0";
+app_elements.statistics_section.Min.Temp.innerHTML = "0";
 // =====
