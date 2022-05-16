@@ -60,7 +60,7 @@ class WebSocketHandler(websocket.WebSocketHandler):
             
             # creates the message to send
             message = {
-                "packet": "1 Random Value",
+                "packet": "",
                 "data": self.ps.generate_values()
             }
             

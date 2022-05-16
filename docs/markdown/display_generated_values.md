@@ -169,11 +169,11 @@ displaying these values in the first entry.
 
 In the next section we will go over how we can update the `Last 10 values` 
 section to push older values down the table as new values come in from the 
-top similar to push values on to a queue.
+top similar to pushing values on to a queue.
 
 <hr>
 
 [Back to Beginning](/README.md) |
 [Prev: *Generating Humidity and Temperature Values*](
-    /docs/markdown/generating_values.md) 
+    /docs/markdown/generating_values.md) |
 [Next: *Queue Like List*](/docs/markdown/queue_like_list.md)

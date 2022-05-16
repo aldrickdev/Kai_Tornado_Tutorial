@@ -86,6 +86,10 @@ let app_elements = {
 };
 // ===== End Appication Elements
 
+// ===== Global State =====
+let displayed_values = 0;
+// ===== End Global State
+
 // ===== Helper Functions =====
 function two_decimals(num) {
   // Convert string to number
@@ -132,6 +136,12 @@ ws.onmessage = function (event) {
   // Round to the nearest hundreth
   let short_hum_value = two_decimals(long_hum_value);
   let short_temp_value = two_decimals(long_temp_value);
+
+  // Pushes the previous values down 
+  for (let i = app_elements.latest_values_section.Hum.length - 1; i > 0; i--){
+    app_elements.latest_values_section.Hum[i].innerHTML = app_elements.latest_values_section.Hum[i-1].innerHTML;
+    app_elements.latest_values_section.Temp[i].innerHTML = app_elements.latest_values_section.Temp[i-1].innerHTML;
+  }
 
   // Display the humidity and temperature values in the first entry
   app_elements.latest_values_section.Hum[0].innerHTML = short_hum_value;
