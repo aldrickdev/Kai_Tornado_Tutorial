@@ -166,4 +166,4 @@ In the next section we will finally tackle the `10 Random Values` button.
 
 [Back to Beginning](/README.md) |
 [Prev: *Displaying Stats*](/docs/markdown/11_stats.md) |
-[Next: *Coming Soon*](/docs/markdown)
+[Next: *10 Random Values*](/docs/markdown/13_10_random_values.md)

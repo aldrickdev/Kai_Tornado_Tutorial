@@ -6,6 +6,8 @@ from tornado import websocket
 from pathlib import Path
 import os
 import json
+import threading
+from time import sleep
 
 from psuedoSensor import PsuedoSensor
 
@@ -69,12 +71,34 @@ class WebSocketHandler(websocket.WebSocketHandler):
             
             # send message to frontend
             self.write_message(stringified_message)
+    
+        elif (json_message["packet"] == "10 Random Values"):
+            # Start a thread with the purpose of just generating 10 values
+            threading.Thread(target = self.random10()).start()
         
     # Function that runs when the connection closes
     def on_close(self):
         # prints Connecton Closed
         print("Connection Closed")
-        
+       
+    # Function to generate 10 values
+    def random10(self):
+        for _ in range(10):
+            # creates the message to send
+            message = {
+                "packet": "",
+                "data": self.ps.generate_values()
+            }
+            
+            # stringify the message
+            stringified_message = json.dumps(message)
+            
+            # send message to frontend
+            self.write_message(stringified_message)
+            
+            # adds a 1 second delay
+            sleep(1)
+             
 
 # Entrypoint
 if __name__ == '__main__':

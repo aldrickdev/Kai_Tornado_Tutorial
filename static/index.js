@@ -302,6 +302,19 @@ function random1() {
   // Send the packet
   ws.send(string_message)
 }
+
+// === Ask backend for 10 Random Values
+function random10() {
+  // Creates the message that we will send to the backend
+  message.packet = "10 Random Values";
+  message.data = "";
+
+  // Stringify the message
+  var string_message = JSON.stringify(message)
+
+  // Send the packet
+  ws.send(string_message)
+}
 // ===== End Websocket Section
 
 // ===== Function to set the alarm =====
