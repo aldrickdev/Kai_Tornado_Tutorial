@@ -23,3 +23,4 @@ Table of Content
 - [Display Generated Values](/docs/markdown/09_display_generated_values.md)
 - [Queue Like List](/docs/markdown/10_queue_like_list.md)
 - [Displaying Stats](/docs/markdown/11_stats.md)
+- [Working Alarm](/docs/markdown/12_working_alarm.md)

@@ -101,6 +101,7 @@ function two_decimals(num) {
   return rounded_value;
 }
 
+// Calculates the Average
 function calculate_avg() {
   // Holds sum
   let hum_sum  = 0;
@@ -116,21 +117,106 @@ function calculate_avg() {
 
   // Calculates sum
   for (let i = 0; i < value_count; i++) {
-    hum_sum  += Number(app_elements.latest_values_section.Hum[i].innerHTML)
-    temp_sum += Number(app_elements.latest_values_section.Temp[i].innerHTML)
+    hum_sum += Number(app_elements.latest_values_section.Hum[i].innerHTML);
+    temp_sum += Number(app_elements.latest_values_section.Temp[i].innerHTML);
   }
 
-  // Calculates average
-  hum_avg  = two_decimals(hum_sum / value_count);
+  // Calculates average and rounds to the nearest hundreth
+  hum_avg = two_decimals(hum_sum / value_count);
   temp_avg = two_decimals(temp_sum / value_count);
 
-  // Covert average to string
-  s_hum_avg  = hum_avg.toString()
-  s_temp_avg = temp_avg.toString()
+  // Covert number to string
+  s_hum_avg = hum_avg.toString();
+  s_temp_avg = temp_avg.toString();
 
   // Display the calculated averages
-  app_elements.statistics_section.Avg.Hum.innerHTML  = s_hum_avg
-  app_elements.statistics_section.Avg.Temp.innerHTML = s_temp_avg
+  app_elements.statistics_section.Avg.Hum.innerHTML = s_hum_avg;
+  app_elements.statistics_section.Avg.Temp.innerHTML = s_temp_avg;
+}
+
+// Finds the Maximum
+function get_max() {
+  // Holds the max values, temp holding Number.NEGATIVE_INFINITY so that we can 
+  // gurantee that the next number we compare it too will be greater
+  let hum_max = Number.NEGATIVE_INFINITY;
+  let temp_max = Number.NEGATIVE_INFINITY;
+
+  // Loop through each displayed value
+  for (let i = 0; i < value_count; i++) {
+    // Get the displayed value
+    let hum_value = Number(app_elements.latest_values_section.Hum[i].innerHTML)
+    let temp_value = Number(app_elements.latest_values_section.Temp[i].innerHTML)
+
+    // Compare the displayed value to the temporary max
+    if (hum_value > hum_max) {
+      // Sets the current value to the max
+      hum_max = hum_value;
+    }
+    // Compare the displayed value to the temporary max
+    if (temp_value > temp_max) {
+      // Sets the current value to the max
+      temp_max = temp_value;
+    }
+  }
+
+  // Display the Max values
+  app_elements.statistics_section.Max.Hum.innerHTML = hum_max.toString()
+  app_elements.statistics_section.Max.Temp.innerHTML = temp_max.toString()
+}
+
+// Finds the Minimum
+function get_min() {
+  // Holds the min values, temp holding Number.POSITIVE_INFINITY so that we can 
+  // gurantee that the next number we compare it too will be smaller
+  let hum_min = Number.POSITIVE_INFINITY;
+  let temp_min = Number.POSITIVE_INFINITY;
+
+  // Loop through each displayed value
+  for (let i = 0; i < value_count; i++) {
+    // Get the displayed value
+    let hum_value = Number(app_elements.latest_values_section.Hum[i].innerHTML)
+    let temp_value = Number(app_elements.latest_values_section.Temp[i].innerHTML)
+
+    // Compare the displayed value to the temporary min
+    if (hum_value < hum_min) {
+      // Sets the current value to the min
+      hum_min = hum_value;
+    }
+    // Compare the displayed value to the temporary min
+    if (temp_value < temp_min) {
+      // Sets the current value to the min
+      temp_min = temp_value;
+    }
+  }
+
+  // Display the Min values
+  app_elements.statistics_section.Min.Hum.innerHTML = hum_min.toString()
+  app_elements.statistics_section.Min.Temp.innerHTML = temp_min.toString()
+}
+
+// Check Alarm Thresholds
+function check_alarm_thresholds(hum, temp) {
+  // Get the current threshold values
+  let s_current_hum_threshold = app_elements.alarm_section.current_alarm.Hum.innerHTML;
+  let s_current_temp_threshold = app_elements.alarm_section.current_alarm.Temp.innerHTML;
+
+  // Convert the string representation of the thresholds to numbers
+  let current_hum_threshold = Number(s_current_hum_threshold);
+  let current_temp_threshold = Number(s_current_temp_threshold);
+
+  // Compare the values to the currently generated values
+  if (hum >= current_hum_threshold && temp >= current_temp_threshold) {
+    app_elements.status.innerHTML = "Both Humidty and Temperature Alarms Triggered";
+  }
+  else if (hum >= current_hum_threshold) {
+    app_elements.status.innerHTML = "Humidty Alarm has Triggered";
+  }
+  else if (temp >= current_temp_threshold) {
+    app_elements.status.innerHTML = "Temperature Alarm has Triggered";
+  }
+  else {
+    app_elements.status.innerHTML = "No Alarms have been Triggered";
+  }
 }
 // ===== End Helper Functions
 
@@ -150,7 +236,7 @@ ws.onopen = function () {
   console.log("Connected to Server");
 };
 
-// === Defines what happens when a message is recieved ===
+// === Defines what happens when a message is received ===
 ws.onmessage = function (event) {
   // Save the data that was received
   let received = event.data;
@@ -185,7 +271,17 @@ ws.onmessage = function (event) {
     value_count++;
   }
 
+  // Display newly generated values
+  app_elements.input_sensor_section.current.Hum.innerHTML = short_hum_value;
+  app_elements.input_sensor_section.current.Temp.innerHTML = short_temp_value;
+
+  // Check to see if the alarm should trigger
+  check_alarm_thresholds(short_hum_value, short_temp_value);
+
+  // Stats
   calculate_avg();
+  get_max();
+  get_min();
 };
 
 // === Defines what happens when the connection is closed ===
@@ -243,4 +339,13 @@ app_elements.statistics_section.Max.Temp.innerHTML = "0";
 // === Min Section ===
 app_elements.statistics_section.Min.Hum.innerHTML = "0";
 app_elements.statistics_section.Min.Temp.innerHTML = "0";
+// =====
+
+// ===== Default Status =====
+app_elements.status.innerHTML = "No Alarms have been Triggered";
+// =====
+
+// ===== Zero Out Current Value Display =====
+app_elements.input_sensor_section.current.Hum.innerHTML = "0";
+app_elements.input_sensor_section.current.Temp.innerHTML = "0";
 // =====
