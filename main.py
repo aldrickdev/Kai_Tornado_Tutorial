@@ -8,9 +8,12 @@ import os
 import json
 import threading
 from time import sleep
+from datetime import datetime
 
 from psuedoSensor import PsuedoSensor
 
+# array to store all of the generated data that was sent to the frontend
+data = []
 
 # function that will return the created server
 def create_server():
@@ -27,6 +30,29 @@ def create_server():
     # returns the server
     return web.Application(handlers, **settings)
 
+
+# function to store the generated data into an array
+def store_data(hum_temp_values):
+    # get the current time
+    now = datetime.now()
+    
+    # format the time how I need to store it
+    formatted_now = f"{now.month}-{now.day}-{now.year} {now.hour}:{now.minute}:{now.second}"
+    
+    # create the data point
+    data_point = {
+        "data": hum_temp_values,
+        "datetime": formatted_now
+    }
+    
+    # insert the data point into the dictionary
+    data.append(data_point)
+    
+    # prints the currently stored values
+    for dp in data:
+        print(dp)
+        
+    print()
 
 # Creating a handler for the path '/'
 class MainHandler(web.RequestHandler):
@@ -71,6 +97,9 @@ class WebSocketHandler(websocket.WebSocketHandler):
             
             # send message to frontend
             self.write_message(stringified_message)
+            
+            # store the data
+            store_data(message["data"])
     
         elif (json_message["packet"] == "10 Random Values"):
             # Start a thread with the purpose of just generating 10 values
@@ -96,9 +125,13 @@ class WebSocketHandler(websocket.WebSocketHandler):
             # send message to frontend
             self.write_message(stringified_message)
             
+            # store the data
+            store_data(message["data"])
+            
             # adds a 1 second delay
             sleep(1)
-             
+           
+      
 
 # Entrypoint
 if __name__ == '__main__':

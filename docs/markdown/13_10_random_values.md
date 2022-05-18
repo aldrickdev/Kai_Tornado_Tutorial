@@ -118,12 +118,12 @@ gets generated without having to press the button again.
 
 <hr>
 
-In this section we learned how to create a thread that has a specific task. In 
-the last section we will see how to time stamp each value generated and how to 
-save it to a dictionary.
+In this section we learned how to create a thread that has a specific task. 
+
+In the last section we will see how to time stamp each value generated and how to save it into an array.
 
 <hr>
 
 [Back to Beginning](/README.md) |
 [Prev: *Working Alarm*](/docs/markdown/12_working_alarm.md) |
-[Next: *Coming Soon*](/docs/markdown)
+[Next: *Saving Your Data*](/docs/markdown/14_saving_data.md)

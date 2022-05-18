@@ -24,3 +24,7 @@ Table of Content
 - [Queue Like List](/docs/markdown/10_queue_like_list.md)
 - [Displaying Stats](/docs/markdown/11_stats.md)
 - [Working Alarm](/docs/markdown/12_working_alarm.md)
+- [10 Random Values](/docs/markdown/13_10_random_values.md)
+- [Saving Your Data](/docs/markdown/14_saving_data.md)
+- [Code](/docs/markdown/15_code.md)
+
