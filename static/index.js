@@ -278,10 +278,6 @@ ws.onmessage = function (event) {
   // Check to see if the alarm should trigger
   check_alarm_thresholds(short_hum_value, short_temp_value);
 
-  // Stats
-  calculate_avg();
-  get_max();
-  get_min();
 };
 
 // === Defines what happens when the connection is closed ===
@@ -314,6 +310,14 @@ function random10() {
 
   // Send the packet
   ws.send(string_message)
+}
+
+// === Calculate the statistics
+function calculate() {
+  // Stats
+  calculate_avg();
+  get_max();
+  get_min();
 }
 // ===== End Websocket Section
 

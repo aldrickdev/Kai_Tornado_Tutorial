@@ -1,7 +1,7 @@
 /* Zero out the margins and padding so that we can start from a clean slate. */
 * {
   margin: 0px;
-  padding: 0px;
+  padding: 0px
 }
 
 /* This will target the body element */
@@ -100,7 +100,7 @@ of latest-values_container */
 
 /* Selects element with class latest-values-table */
 .latest-values-table {
-  font-size: 15px;
+  font-size: 13px;
 }
 
 /* Selects all elements with the id of statistics_container */
@@ -146,11 +146,38 @@ of statistics_container */
 
   /* Sets the margins around the children to be equal */
   justify-content: space-around;
+
+  /* Adds some margins to the top and bottom */
+  margin-top: 25px;
+  margin-bottom: 50px;
 }
 
 #statistic-table {
   /* Sets the display mode to flex, allowing you to put components side by side */
   display: flex;
+
+  /* Sets the direction the components will be displayed */
+  flex-direction: column;
+}
+
+#statistic-table table {
+  /* Sets the width fo the table to 90% */
+  width: 90%;
+}
+
+#statistic-table table thead tr {
+  /*  Sets the height to 30px */
+  height: 30px;
+}
+
+#statistic-table table tbody tr {
+  /* Sets the height to 40px */
+  height:40px;
+}
+
+#statistic-table button {
+  /* Sets the button width to 90% of its containers width */
+  width: 90%;
 }
 
 /* Selects the elements with the class content-panel that is a child of elements
